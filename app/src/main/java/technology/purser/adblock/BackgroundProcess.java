@@ -13,6 +13,7 @@ class BackgroundProcess implements Runnable{
     public void run(){
 
         try{
+            m.update(false);
             SH shell = new SH();
 
             shell.getRoot();
@@ -30,8 +31,7 @@ class BackgroundProcess implements Runnable{
             block.store(file);
 
             shell.cp(file.getAbsolutePath(), "/system/etc/hosts");
-            System.out.println("write succeeded");
-            m.update();
+            m.update(true);
 
         }catch(Exception e){
             System.err.println(e);

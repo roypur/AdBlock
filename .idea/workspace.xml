@@ -39,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BackgroundProcess.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BackgroundProcess.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/BackgroundProcess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44329897">
-              <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -72,15 +72,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.7525773">
+              <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#715#906#0" expanded="true" />
-                <element signature="e#905#906#0" expanded="true" />
+                <element signature="e#733#1064#0" expanded="true" />
+                <element signature="e#1063#1064#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1647,9 +1647,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/FetchFile.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/HostsFileList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/SH.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/BackgroundProcess.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -1972,34 +1972,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/HostsFileList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#853#854#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/SH.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#715#906#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2032,9 +2009,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/BackgroundProcess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44329897">
-          <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/HostsFileList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#853#854#0" expanded="true" />
+            <element signature="e#880#881#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/technology/purser/adblock/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7525773">
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#733#1064#0" expanded="true" />
+            <element signature="e#1063#1064#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

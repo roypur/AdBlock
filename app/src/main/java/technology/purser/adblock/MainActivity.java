@@ -21,11 +21,15 @@ public class MainActivity extends Activity {
         Thread trd = new Thread(bp);
         trd.start();
     }
-    protected void update(){
+    protected void update(final boolean done){
         runOnUiThread(new Runnable(){
             public void run(){
                 TextView tv = (TextView)findViewById(R.id.confirmText);
-                tv.setText("successful write!");
+                if(done) {
+                    tv.setText("successful write!");
+                }else{
+                    tv.setText("Applying hosts-file, please wait");
+                }
             }
         });
     }
