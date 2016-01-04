@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * Created by roypur on 1/3/16.
  */
-public class HostsFileList extends FetchFile{
+class HostsFileList extends FetchFile{
     private ArrayList<String> urls = new ArrayList<>();
 
     public HostsFileList(String txtURL) throws Exception{

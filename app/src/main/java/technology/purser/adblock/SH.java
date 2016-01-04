@@ -9,7 +9,7 @@ import java.io.OutputStream;
 /**
  * Created by roypur on 1/2/16.
  */
-public class SH {
+class SH {
     private Process shell;
     private OutputStream stdin;
 

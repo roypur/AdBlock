@@ -7,8 +7,9 @@ import java.util.Arrays;
 /**
  * Created by roypur on 1/2/16.
  */
-public class BackgroundProcess implements Runnable{
+class BackgroundProcess implements Runnable{
     private File file;
+    private MainActivity m;
     public void run(){
 
         try{
@@ -29,12 +30,15 @@ public class BackgroundProcess implements Runnable{
             block.store(file);
 
             shell.cp(file.getAbsolutePath(), "/system/etc/hosts");
+            System.out.println("write succeeded");
+            m.update();
 
         }catch(Exception e){
             System.err.println(e);
         }
     }
-    public void setCache(File f){
+    public BackgroundProcess(File f, MainActivity m){
         file = f;
+        this.m = m;
     }
 }
