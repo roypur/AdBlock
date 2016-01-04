@@ -1,6 +1,7 @@
 package technology.purser.adblock;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -8,37 +9,38 @@ import java.util.Arrays;
  * Created by roypur on 1/2/16.
  */
 class BackgroundProcess implements Runnable{
-    private File file;
     private MainActivity m;
     public void run(){
 
         try{
             m.update(false);
-            SH shell = new SH();
-
-            shell.getRoot();
-
-            shell.rw();
 
             HostsFileList hfl = new HostsFileList("https://raw.githubusercontent.com/roypur/hosts/master/src");
 
             ArrayList<String> urls = hfl.getUrls();
 
-            urls.add(file.getAbsolutePath());
+            File tmpHost = new File(m.getCacheDir(), "hosts");
+
+            urls.add(m.getCacheDir().getAbsolutePath());
 
             AdBlock block = new AdBlock(urls);
 
-            block.store(file);
+            block.store(tmpHost);
 
-            shell.cp(file.getAbsolutePath(), "/system/etc/hosts");
+            String scriptPath = new File(m.getCacheDir(), "copy.sh").getAbsolutePath();
+
+            String []cmds = {"su", "-c", "sh", scriptPath};
+
+            Runtime.getRuntime().exec(cmds);
+
             m.update(true);
 
         }catch(Exception e){
+            System.err.println("BackgroundProcess-thread-fail");
             System.err.println(e);
         }
     }
-    public BackgroundProcess(File f, MainActivity m){
-        file = f;
+    public BackgroundProcess(MainActivity m){
         this.m = m;
     }
 }

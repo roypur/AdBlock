@@ -3,10 +3,14 @@ package technology.purser.adblock;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.app.ActivityManager;
 import android.widget.TextView;
+import java.io.PrintWriter;
+
+
 
 import java.io.File;
+import java.util.Scanner;
+
 public class MainActivity extends Activity {
 
     private File tmpFile;
@@ -15,11 +19,25 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tmpFile = new File(getCacheDir(), "hosts");
+        System.out.println(tmpFile);
+        try {
+            Scanner sc = new Scanner(getAssets().open("copy.sh"));
+            PrintWriter p = new PrintWriter(new File(getCacheDir(), "copy.sh"));
+            while(sc.hasNextLine()){
+                p.println(sc.nextLine());
+            }
+            p.flush();
+            p.close();
+
+        }catch(Exception e){
+
+        }
+
     }
     public void apply(View v){
-        BackgroundProcess bp = new BackgroundProcess(tmpFile, this);
-        Thread trd = new Thread(bp);
-        trd.start();
+        BackgroundProcess bp = new BackgroundProcess(this);
+        Thread t = new Thread(bp);
+        t.start();
     }
     protected void update(final boolean done){
         runOnUiThread(new Runnable(){

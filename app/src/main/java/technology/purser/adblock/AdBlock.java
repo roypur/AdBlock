@@ -39,6 +39,7 @@ class AdBlock{
             //pw.close();
 
         } catch (FileNotFoundException e) {
+            System.out.println("AdBlock-store");
             System.out.println(e);
         }
     }
