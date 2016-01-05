@@ -5,25 +5,30 @@ import java.io.PrintWriter;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.HashSet;
 
 class AdBlock{
-    private HashMap<String, Host> hosts = new HashMap<>();
+    private HashSet<Host> hosts = new HashSet<>();
 
     public AdBlock(ArrayList<String> url) throws Exception{
         for(String s: url){
             HostsFile hf = new HostsFile(s);
             for(Host newHost: hf.getHosts()){
-                if(hosts.get(newHost.getHostName()) == null){
+
+                //System.out.println("127.0.0.1".hashCode());
+
+
+                if(!hosts.contains(newHost)){
                     if(newHost.isLocal()){
                         Host ipSix = new Host("::1", newHost.getHostName());
                         Host ipFour = new Host("127.0.0.1", newHost.getHostName());
-                        hosts.put(newHost.getHostName(), ipSix);
-                        hosts.put(newHost.getHostName(), ipFour);
+                        hosts.add(ipSix);
+                        hosts.add(ipFour);
                     }else{
-                        hosts.put(newHost.getHostName(), newHost);
+                        hosts.add(newHost);
                     }
                 }else if(!newHost.isLocal()){
-                    hosts.put(newHost.getHostName(), newHost);
+                    hosts.add(newHost);
                 }
             }
         }
@@ -34,7 +39,7 @@ class AdBlock{
 
             PrintWriter pw = new PrintWriter(f);
 
-            for (Host h : hosts.values()) {
+            for (Host h : hosts) {
                 pw.println(h.toString());
             }
 

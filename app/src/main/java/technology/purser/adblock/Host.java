@@ -27,14 +27,14 @@ class Host{
     }
     public boolean equals(Object o){
         Host h = (Host)o;
-        
-        if((h.isLocal()) && local && (h.getHostName().equals(hostname))){
-            //if both are localhost and hostname=hostname
-            return true;
-        }else if((h.getHostName().equals(hostname)) && (h.getIp().equals(ip))){
+
+        if((h.getHostName().equals(hostname)) && (h.getIp().equals(ip))){
             //if hostname=hostname and ip=ip
             return true;
         }
         return false;
+    }
+    public int hashCode(){
+        return (ip+hostname).hashCode();
     }
 }
