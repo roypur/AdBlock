@@ -15,21 +15,22 @@ class BackgroundProcess implements Runnable{
         try{
             m.update(false);
 
+            String scriptPath = new File(m.getCacheDir(), "copy.sh").getAbsolutePath();
+            String []cmds = {"su", "-c", "sh", scriptPath};
+
+            Runtime.getRuntime().exec(cmds);
+
             HostsFileList hfl = new HostsFileList("https://raw.githubusercontent.com/roypur/hosts/master/src");
 
             ArrayList<String> urls = hfl.getUrls();
 
             File tmpHost = new File(m.getCacheDir(), "hosts");
 
-            urls.add(m.getCacheDir().getAbsolutePath());
+            urls.add(new File(m.getCacheDir(), "old-hosts").getAbsolutePath());
 
             AdBlock block = new AdBlock(urls);
 
             block.store(tmpHost);
-
-            String scriptPath = new File(m.getCacheDir(), "copy.sh").getAbsolutePath();
-
-            String []cmds = {"su", "-c", "sh", scriptPath};
 
             Runtime.getRuntime().exec(cmds);
 

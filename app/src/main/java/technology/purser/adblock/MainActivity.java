@@ -13,13 +13,13 @@ import java.util.Scanner;
 
 public class MainActivity extends Activity {
 
-    private File tmpFile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tmpFile = new File(getCacheDir(), "hosts");
-        System.out.println(tmpFile);
+    }
+    public void apply(View v){
+
         try {
             Scanner sc = new Scanner(getAssets().open("copy.sh"));
             PrintWriter p = new PrintWriter(new File(getCacheDir(), "copy.sh"));
@@ -30,15 +30,13 @@ public class MainActivity extends Activity {
             p.close();
 
         }catch(Exception e){
-
         }
 
-    }
-    public void apply(View v){
         BackgroundProcess bp = new BackgroundProcess(this);
         Thread t = new Thread(bp);
         t.start();
     }
+
     protected void update(final boolean done){
         runOnUiThread(new Runnable(){
             public void run(){
