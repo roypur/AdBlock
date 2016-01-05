@@ -22,7 +22,7 @@ class HostsFile extends FetchFile{
                     }
                 }
             }
-        }
+       }
     }
     public ArrayList<Host> getHosts(){
         return hosts;

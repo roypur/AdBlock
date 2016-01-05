@@ -1,9 +1,7 @@
 package technology.purser.adblock;
 
 import java.io.File;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by roypur on 1/2/16.
