@@ -37,15 +37,11 @@ public class MainActivity extends Activity {
         t.start();
     }
 
-    protected void update(final boolean done){
+    protected void update(final String txt){
         runOnUiThread(new Runnable(){
             public void run(){
                 TextView tv = (TextView)findViewById(R.id.confirmText);
-                if(done) {
-                    tv.setText("successful write!");
-                }else{
-                    tv.setText("Applying hosts-file, please wait");
-                }
+                tv.setText(txt);
             }
         });
     }

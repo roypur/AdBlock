@@ -11,7 +11,7 @@ class BackgroundProcess implements Runnable{
     public void run(){
 
         try{
-            m.update(false);
+            m.update("Downloading files");
 
             String scriptPath = new File(m.getCacheDir(), "copy.sh").getAbsolutePath();
             String []cmds = {"su", "-c", "sh", scriptPath};
@@ -23,20 +23,21 @@ class BackgroundProcess implements Runnable{
             ArrayList<String> urls = hfl.getUrls();
 
             File tmpHost = new File(m.getCacheDir(), "hosts");
-
+            m.update("Parsing hosts");
             urls.add(new File(m.getCacheDir(), "old-hosts").getAbsolutePath());
 
             AdBlock block = new AdBlock(urls);
+
+            m.update("Saving hosts");
 
             block.store(tmpHost);
 
             Runtime.getRuntime().exec(cmds);
 
-            m.update(true);
+            m.update("Update finished!");
 
         }catch(Exception e){
-            System.err.println("BackgroundProcess-thread-fail");
-            System.err.println(e);
+            m.update("Update failed!");
         }
     }
     public BackgroundProcess(MainActivity m){

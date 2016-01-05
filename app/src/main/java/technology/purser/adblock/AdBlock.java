@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.io.PrintWriter;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.HashSet;
 
 class AdBlock{
@@ -14,10 +13,6 @@ class AdBlock{
         for(String s: url){
             HostsFile hf = new HostsFile(s);
             for(Host newHost: hf.getHosts()){
-
-                //System.out.println("127.0.0.1".hashCode());
-
-
                 if(!hosts.contains(newHost)){
                     if(newHost.isLocal()){
                         Host ipSix = new Host("::1", newHost.getHostName());
