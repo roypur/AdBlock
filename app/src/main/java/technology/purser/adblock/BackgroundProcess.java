@@ -18,7 +18,7 @@ class BackgroundProcess implements Runnable{
 
             Runtime.getRuntime().exec(cmds);
 
-            HostsFileList hfl = new HostsFileList("https://raw.githubusercontent.com/roypur/hosts/master/src");
+            HostsFileList hfl = new HostsFileList("https://raw.githubusercontent.com/roypur/hosts/master/ipv4/src");
 
             ArrayList<String> urls = hfl.getUrls();
 
