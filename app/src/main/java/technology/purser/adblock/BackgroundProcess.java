@@ -14,7 +14,8 @@ class BackgroundProcess implements Runnable{
             m.update("Downloading files");
 
             String scriptPath = new File(m.getCacheDir(), "copy.sh").getAbsolutePath();
-            String []cmds = {"su", "-c", "sh", scriptPath};
+
+            String []cmds = {"su", "-c", "sh", scriptPath, m.getUser()[0], m.getUser()[1]};
 
             Runtime.getRuntime().exec(cmds);
 
