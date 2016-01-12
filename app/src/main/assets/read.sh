@@ -8,5 +8,5 @@ else
 fi
 
 # sets the app-user to owner
-chown -R ${APP_USER} $(dirname $0)
-chgrp -R ${APP_GROUP} $(dirname $0)
+chown -R ${APP_USER} ${APP_CACHE}
+chgrp -R ${APP_GROUP} ${APP_CACHE}

@@ -45,6 +45,7 @@ public class MainActivity extends Activity {
                     sc.close();
                     System.setProperty("APP_USER", uid);
                     System.setProperty("APP_GROUP", gid);
+                    System.setProperty("APP_CACHE", getCacheDir().getAbsolutePath());
                     break;
                 }
             }
