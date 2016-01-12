@@ -51,11 +51,10 @@ public class MainActivity extends Activity {
             update("Failed to identify user");
         }
     }
-    public void apply(View v){
-
+    private void copyAsset(String file){
         try {
-            Scanner sc = new Scanner(getAssets().open("copy.sh"));
-            PrintWriter p = new PrintWriter(new File(getCacheDir(), "copy.sh"));
+            Scanner sc = new Scanner(getAssets().open(file));
+            PrintWriter p = new PrintWriter(new File(getCacheDir(), file));
             while(sc.hasNextLine()){
                 p.println(sc.nextLine());
             }
@@ -65,6 +64,10 @@ public class MainActivity extends Activity {
         }catch(Exception e){
             update("Failed to copy script");
         }
+    }
+    public void apply(View v){
+        copyAsset("read.sh");
+        copyAsset("write.sh");
 
         BackgroundProcess bp = new BackgroundProcess(this);
         Thread t = new Thread(bp);

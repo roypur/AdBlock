@@ -13,11 +13,15 @@ class BackgroundProcess implements Runnable{
         try{
             m.update("Downloading files");
 
-            String scriptPath = new File(m.getCacheDir(), "copy.sh").getAbsolutePath();
+            String readScriptPath = new File(m.getCacheDir(), "read.sh").getAbsolutePath();
+            String writeScriptPath = new File(m.getCacheDir(), "write.sh").getAbsolutePath();
 
-            String []cmds = {"su", "-c", "sh", scriptPath, m.getUser()[0], m.getUser()[1]};
+            String []readCmd = {"su", "-c", "sh", readScriptPath, m.getUser()[0], m.getUser()[1]};
+            String []writeCmd = {"su", "-c", "sh", writeScriptPath, m.getUser()[0], m.getUser()[1]};
 
-            Runtime.getRuntime().exec(cmds);
+            String []env = {"APP_USER="+m.getUser()[0], "APP_GROUP="+m.getUser()[1]};
+
+            Runtime.getRuntime().exec(readCmd, env);
 
             HostsFileList hfl = new HostsFileList("https://raw.githubusercontent.com/roypur/hosts/master/ipv4/src");
 
@@ -33,11 +37,11 @@ class BackgroundProcess implements Runnable{
 
             block.store(tmpHost);
 
-            Runtime.getRuntime().exec(cmds);
+            Runtime.getRuntime().exec(writeCmd, env);
 
             m.update("Update finished!");
 
-        }catch(Exception e){
+        }catch(Exception e) {
             m.update("Update failed!");
         }
     }
