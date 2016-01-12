@@ -12,15 +12,12 @@ import java.util.Scanner;
 
 public class MainActivity extends Activity {
 
-    private String gid;
-    private String uid;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //get linux user
+        //set env vars
         try {
             InputStream os = Runtime.getRuntime().exec("id").getInputStream();
 
@@ -32,6 +29,8 @@ public class MainActivity extends Activity {
 
             boolean hasGid = false;
             boolean hasUid = false;
+            String uid = "";
+            String gid = "";
 
             for(int i=0; i<spacedString.length; i++){
                 if(spacedString[i].startsWith("uid=")){
@@ -44,6 +43,8 @@ public class MainActivity extends Activity {
                 }
                 if(hasGid && hasUid){
                     sc.close();
+                    System.setProperty("APP_USER", uid);
+                    System.setProperty("APP_GROUP", gid);
                     break;
                 }
             }
@@ -72,10 +73,6 @@ public class MainActivity extends Activity {
         BackgroundProcess bp = new BackgroundProcess(this);
         Thread t = new Thread(bp);
         t.start();
-    }
-    public String[] getUser(){
-        String []ret = {uid,gid};
-        return ret;
     }
 
     protected void update(final String txt){
