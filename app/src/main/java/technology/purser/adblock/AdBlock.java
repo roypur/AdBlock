@@ -1,5 +1,5 @@
 package technology.purser.adblock;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.io.PrintWriter;
 
@@ -28,22 +28,15 @@ class AdBlock{
             }
         }
     }
-    public void store(File f) {
+    public void store(File f) throws IOException{
 
-        try {
+        PrintWriter pw = new PrintWriter(f);
 
-            PrintWriter pw = new PrintWriter(f);
-
-            for (Host h : hosts) {
-                pw.println(h.toString());
-            }
-
-            pw.flush();
-            pw.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("AdBlock-store");
-            System.out.println(e);
+        for (Host h : hosts) {
+            pw.println(h.toString());
         }
+
+        pw.flush();
+        pw.close();
     }
 }

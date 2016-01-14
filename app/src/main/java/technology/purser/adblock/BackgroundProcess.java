@@ -70,7 +70,6 @@ class BackgroundProcess implements Runnable{
             m.update("Update finished!");
 
         }catch(Exception e) {
-            System.out.println("error-" + e);
             m.update("Update failed!");
         }
     }

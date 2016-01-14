@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-
-echo ${APP_USER} > $(dirname $0)/test
-
 if [ -r /system/etc/hosts ]
 then
     cp /system/etc/hosts ${APP_CACHE}/old-hosts
