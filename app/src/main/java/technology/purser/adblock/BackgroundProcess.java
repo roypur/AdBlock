@@ -1,26 +1,55 @@
 package technology.purser.adblock;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by roypur on 1/2/16.
  */
 class BackgroundProcess implements Runnable{
     private MainActivity m;
+
+    private void runScript(String file) throws IOException, InterruptedException{
+        {
+            String scriptPath = new File(m.getCacheDir(), file).getAbsolutePath();
+            String []cmd = {"su", "-c", "sh", scriptPath};
+            ProcessBuilder pb = new ProcessBuilder(cmd);
+
+            pb.environment().putAll(m.getEnv());
+            Process p = pb.start();
+
+            InputStream stdout = p.getInputStream();
+            InputStream stderr = p.getErrorStream();
+
+            stdout.read(new byte[stdout.available()]);
+            stderr.read(new byte[stderr.available()]);
+
+
+            int a = 1;
+
+            while(a>0) {
+                a = stderr.read(new byte[stderr.available()]);
+            }
+            a = 1;
+            while(a>0) {
+                a = stdout.read(new byte[stdout.available()]);
+            }
+
+            stdout.close();
+            stderr.close();
+
+            p.waitFor();
+            p.destroy();
+        }
+    }
     public void run(){
 
         try{
             m.update("Downloading files");
 
-            String readScriptPath = new File(m.getCacheDir(), "read.sh").getAbsolutePath();
-            String writeScriptPath = new File(m.getCacheDir(), "write.sh").getAbsolutePath();
-
-            String []readCmd = {"su", "-c", "sh", readScriptPath};
-            String []writeCmd = {"su", "-c", "sh", writeScriptPath};
-
-            Runtime.getRuntime().exec(readCmd);
+            runScript("read.sh");
 
             HostsFileList hfl = new HostsFileList("https://raw.githubusercontent.com/roypur/hosts/master/ipv4/src");
 
@@ -36,11 +65,12 @@ class BackgroundProcess implements Runnable{
 
             block.store(tmpHost);
 
-            Runtime.getRuntime().exec(writeCmd);
+            runScript("write.sh");
 
             m.update("Update finished!");
 
         }catch(Exception e) {
+            System.out.println("error-" + e);
             m.update("Update failed!");
         }
     }

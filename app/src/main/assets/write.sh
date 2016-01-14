@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 mount -o remount,rw /system
 
-if [ -r $(dirname $0)/hosts ]
+if [ -r ${APP_CACHE}/hosts ]
 then
-    cp $(dirname $0)/hosts /system/etc/hosts
+    cp ${APP_CACHE}/hosts /system/etc/hosts
 fi
 
-# sets the app-user to owner
+# sets the owner to app-user
 chown -R ${APP_USER} ${APP_CACHE}
 chgrp -R ${APP_GROUP} ${APP_CACHE}
 

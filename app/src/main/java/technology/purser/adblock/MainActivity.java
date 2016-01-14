@@ -8,9 +8,12 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.File;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MainActivity extends Activity {
+
+    private Map<String, String> env;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +22,17 @@ public class MainActivity extends Activity {
 
         //set env vars
         try {
-            InputStream os = Runtime.getRuntime().exec("id").getInputStream();
 
-            Scanner sc = new Scanner(os);
+            ProcessBuilder pb = new ProcessBuilder("id");
+
+            env = pb.environment();
+
+            Process p = pb.start();
+
+            InputStream stdout = p.getInputStream();
+            InputStream stderr = p.getErrorStream();
+
+            Scanner sc = new Scanner(stdout);
 
             String txt = sc.nextLine();
 
@@ -36,16 +47,30 @@ public class MainActivity extends Activity {
                 if(spacedString[i].startsWith("uid=")){
                     //parses uid=userid(username) to username
                     uid=spacedString[i].split("\\(")[1].split("\\)")[0];
+                    hasUid = true;
                 }
                 if(spacedString[i].startsWith("uid=")){
                     //parses gid=groupid(groupname) to groupname
                     gid=spacedString[i].split("\\(")[1].split("\\)")[0];
+                    hasGid = true;
                 }
                 if(hasGid && hasUid){
+                    int a = 1;
+                    while(a>0) {
+                        a = stdout.read(new byte[stdout.available()]);
+                    }
+                    a = 1;
+                    while(a>0) {
+                        a = stderr.read(new byte[stderr.available()]);
+                    }
+
                     sc.close();
-                    System.setProperty("APP_USER", uid);
-                    System.setProperty("APP_GROUP", gid);
-                    System.setProperty("APP_CACHE", getCacheDir().getAbsolutePath());
+                    stderr.close();
+
+                    p.destroy();
+                    env.put("APP_USER", uid);
+                    env.put("APP_GROUP", gid);
+                    env.put("APP_CACHE", getCacheDir().getAbsolutePath());
                     break;
                 }
             }
@@ -53,6 +78,10 @@ public class MainActivity extends Activity {
             update("Failed to identify user");
         }
     }
+    public Map<String,String> getEnv(){
+        return env;
+    }
+
     private void copyAsset(String file){
         try {
             Scanner sc = new Scanner(getAssets().open(file));
