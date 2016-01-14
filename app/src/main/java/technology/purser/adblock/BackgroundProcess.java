@@ -22,11 +22,7 @@ class BackgroundProcess implements Runnable{
 
             InputStream stdout = p.getInputStream();
             InputStream stderr = p.getErrorStream();
-
-            stdout.read(new byte[stdout.available()]);
-            stderr.read(new byte[stderr.available()]);
-
-
+            
             int a = 1;
 
             while(a>0) {
