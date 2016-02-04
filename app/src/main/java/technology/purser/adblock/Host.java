@@ -11,7 +11,7 @@ class Host{
         this.hostname = hostname;
         hash = (ip+hostname).hashCode();
 
-        if((ip.equals("127.0.0.1")) || (ip.equals("::1"))){
+        if((ip.equals("127.0.0.1")) || (ip.equals("::1")) || (ip.equals("0.0.0.0"))){
             local = true;
         }else{
             local = false;
